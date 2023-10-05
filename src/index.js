@@ -5,7 +5,10 @@ import { getPictures, PER_PAGE } from './js/fetch';
 
 let userSearch;
 let page = 1;
-let lightbox = new SimpleLightbox('.gallery a');
+let lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
 
 const form = document.querySelector('.search-form');
 const loadBtn = document.querySelector('.load-more');
@@ -24,11 +27,14 @@ function onSearchBtn(e) {
   userSearch = e.target.elements.searchQuery.value;
   clearData();
 
-  getPictures(userSearch)
+  if (userSearch.trim().length === 0) {
+    return;
+  }
+
+  getPictures(userSearch, page)
     .then(data => {
       const pages = Math.ceil(data.totalHits / PER_PAGE);
-      console.log(pages);
-      console.log(data.totalHits);
+
       if (!data.totalHits) {
         Notify.failure(
           `Sorry, there are no images matching your search query. Please try again.`
@@ -47,10 +53,11 @@ function onSearchBtn(e) {
 
       scroll();
 
-      if (page === 1) {
+      if (page >= 1) {
         lightbox.refresh();
-
-        console.log(lightbox.refresh());
+      }
+      if (page === pages) {
+        loadBtn.classList.replace('load-more', 'load-more-hidden');
       }
     })
     .catch(error => console.log(error));
@@ -59,13 +66,17 @@ function onSearchBtn(e) {
 function onLoadBtn() {
   page += 1;
 
-  getPictures(page).then(data => {
+  getPictures(userSearch, page).then(data => {
     const pages = Math.ceil(data.totalHits / PER_PAGE);
     gallery.insertAdjacentHTML('beforeend', createMarkUp(data.hits));
     lightbox.refresh();
     scroll();
+    loadBtn.classList.replace('load-more', 'load-more-hidden');
 
-    if (page >= pages) {
+    if (page <= pages) {
+      loadBtn.classList.replace('load-more-hidden', 'load-more');
+    }
+    if (page === pages) {
       loadBtn.classList.replace('load-more', 'load-more-hidden');
     }
   });
@@ -109,6 +120,7 @@ function createMarkUp(arr) {
 
 function clearData() {
   gallery.innerHTML = '';
+  page = 1;
 }
 
 function scroll() {
