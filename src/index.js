@@ -35,6 +35,7 @@ function onSearchBtn(e) {
             console.log(data.totalHits);
             if (!data.totalHits) {
                 Notify.failure(`Sorry, there are no images matching your search query. Please try again.`);
+                loadBtn.classList.replace("load-more", "load-more-hidden")
                 return
             };
           
