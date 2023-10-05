@@ -1,0 +1,27 @@
+input {
+ 
+    border-radius: 5px 0px 0px 5px;
+    border-color: rgb(253, 253, 253);
+    padding: 5px 20px;
+    background: rgb(253, 253, 253);
+
+}
+
+
+
+.search-form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0px 10px 0px;
+    position: sticky;
+    top: 0px;
+    
+    background-color: rgb(94, 83, 180);
+}
+
+button {
+    border-radius: 0px 5px 5px 0px;
+    background: rgb(204, 199, 235);
+    
+}

@@ -1,0 +1,48 @@
+.gallery {
+  
+  
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: auto;
+    
+    
+  
+}
+.photo-card {
+   
+    box-shadow: 0 10px 15px -3px #0000001a;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+   
+}
+.photo-card img {
+    object-fit: cover;
+    width: 100%;
+    height: 75%;
+}
+
+.info {
+   
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 9px;
+}
+
+.info-item {
+    display: flex;
+   align-items: center;
+
+}
+
+
+.info-item span {
+    margin-top: 5px;}
+
+a {
+    text-decoration: none;
+    color: black;
+}

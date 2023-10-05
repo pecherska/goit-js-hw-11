@@ -1,1 +1,22 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+
+.load-more-hidden {
+    display: none;
+}
+
+.load-more {
+    margin-left: 650px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(94, 83, 180);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
