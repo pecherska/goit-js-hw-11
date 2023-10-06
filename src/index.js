@@ -24,10 +24,10 @@ loadBtn.classList.replace('load-more', 'load-more-hidden');
 
 function onSearchBtn(e) {
   e.preventDefault();
-  userSearch = e.target.elements.searchQuery.value;
+  userSearch = e.target.elements.searchQuery.value.trim();
   clearData();
 
-  if (userSearch.trim().length === 0) {
+  if (userSearch.length === 0) {
     return;
   }
 
